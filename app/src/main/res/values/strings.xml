@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">lottery</string>
+    <string name="fl_lottery">中国福利彩票</string>
+    <string name="hall">购彩大厅</string>
+    <string name="tc">体彩</string>
+    <string name="fc">福彩</string>
+    <string name="kefu_tel">客服电话:027-88882222</string>
+    <string name="mine">个人中心</string>
+    <string name="transaction">交易明细</string>
+    <string name="kefu_qq">客服QQ:23456789</string>
+    <string name="sing_out">退出登录</string>
+</resources>

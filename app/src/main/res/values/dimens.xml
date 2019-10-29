@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="bg_padding">8dp</dimen>
+    <dimen name="padding_s">8dp</dimen>
+    <dimen name="title_size">14sp</dimen>
+</resources>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="smooth_button">
+        <attr name="color" format="color" />
+
+    </declare-styleable>
+    <declare-styleable name="HeadView">
+        <attr name="isShowIcon" format="boolean" />
+        <attr name="leftText" format="string" />
+        <attr name="isShowRightBottom" format="boolean" />
+        <attr name="rightBottomText" format="string" />
+    </declare-styleable>
+</resources>
