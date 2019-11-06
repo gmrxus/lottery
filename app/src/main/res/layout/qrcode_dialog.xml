@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/gray_a"
+    android:paddingLeft="128dp"
+    android:paddingTop="48dp"
+    android:paddingRight="128dp"
+    android:paddingBottom="48dp">
+
+    <RelativeLayout
+        android:id="@+id/rl_top"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/ic_bg_qrcode"
+        android:paddingTop="128dp">
+
+        <ImageView
+            android:id="@+id/iv_qrcode"
+            android:layout_width="301dp"
+            android:layout_height="301dp"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/qrcode" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/iv_qrcode"
+            android:paddingTop="48dp">
+
+            <TextView
+                android:id="@+id/tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:text="@string/qrcode_login_hint"
+                android:textColor="@color/gray"
+                android:textSize="@dimen/textSizeDialog" />
+
+            <com.zzrh.lottery.ui.FocusButton
+                android:id="@+id/btn_close"
+                android:layout_width="228dp"
+                android:layout_height="46dp"
+                android:layout_below="@id/tv"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="24dp"
+                android:background="@drawable/selector_bg_main_btn"
+                android:text="@string/close"
+                android:textColor="@color/white"
+                android:textSize="@dimen/textSizeDialogBtn" />
+        </RelativeLayout>
+    </RelativeLayout>
+
+
+</RelativeLayout>

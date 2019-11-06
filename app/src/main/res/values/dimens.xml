@@ -3,4 +3,11 @@
     <dimen name="bg_padding">8dp</dimen>
     <dimen name="padding_s">8dp</dimen>
     <dimen name="title_size">14sp</dimen>
+    <dimen name="textSizeBtn">18sp</dimen>
+    <dimen name="textSizeTitleBar">28sp</dimen>
+    <dimen name="mr_screen">32sp</dimen>
+    <dimen name="ts_text_btn">24sp</dimen>
+    <dimen name="textSizeDialog">27sp</dimen>
+    <dimen name="textSizeDialogBtn">24sp</dimen>
+    <dimen name="textSizeBtnHead">20sp</dimen>
 </resources>

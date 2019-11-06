@@ -3,9 +3,12 @@ package com.zzrh.lottery;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 
 import com.zzrh.lottery.adapter.MainPageRvAdapter;
 import com.zzrh.lottery.base.BaseActivity;
@@ -23,6 +26,8 @@ public class MainActivity extends BaseActivity {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
     setView();
+
+
   }
 
   private void setView() {

@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -19,10 +20,14 @@ public class HeadView extends RelativeLayout {
   private boolean isShowIcon;
   private String leftText;
   private boolean isShowRightBottom;
+  private boolean isShowMidText;
+  private boolean isShowUserText;
   private String rightBottomText;
   private ImageView iv;
+  private TextView tvUser;
   private TextView tv;
-  private Button btn;
+//  private TextView tvMid;
+  private FocusButton btn;
 
   public HeadView(Context context) {
     this(context, null);
@@ -44,6 +49,8 @@ public class HeadView extends RelativeLayout {
     leftText = typedArray.getString(R.styleable.HeadView_leftText);
     isShowRightBottom = typedArray.getBoolean(R.styleable.HeadView_isShowRightBottom, false);
     rightBottomText = typedArray.getString(R.styleable.HeadView_rightBottomText);
+    isShowMidText = typedArray.getBoolean(R.styleable.HeadView_isShowRightBottom, false);
+    isShowUserText = typedArray.getBoolean(R.styleable.HeadView_isShowUserTv, false);
     typedArray.recycle();
 
   }
@@ -52,11 +59,39 @@ public class HeadView extends RelativeLayout {
     LayoutInflater.from(context).inflate(R.layout.item_head_view, this, true);
     iv = findViewById(R.id.iv);
     tv = findViewById(R.id.tv);
+    tvUser = findViewById(R.id.tv_user);
+//    tvMid = findViewById(R.id.tv_mid);
     btn = findViewById(R.id.btn);
-    iv.setVisibility(isShowIcon?VISIBLE:GONE);
+//    tvMid.setVisibility(isShowMidText ? VISIBLE : GONE);
+    iv.setVisibility(isShowIcon ? VISIBLE : GONE);
+    tvUser.setVisibility(isShowUserText ? VISIBLE : GONE);
+    btn.setVisibility(isShowRightBottom ? VISIBLE : GONE);
     tv.setText(leftText);
-    btn.setVisibility(isShowRightBottom?VISIBLE:GONE);
     btn.setText(rightBottomText);
+    btn.setOnClickListener(new OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        rightListener.rightBtnClick(v);
+      }
+    });
+  }
+
+  private OnRightBtnClickListener rightListener;
+  private OnLeftBtnClickListener leftListener;
+
+  public void setRightClickListener(OnRightBtnClickListener listener) {
+    this.rightListener = listener;
+  }
+
+  public interface OnRightBtnClickListener {
+    void rightBtnClick(View v);
+
+
+  }
+
+  public interface OnLeftBtnClickListener {
+    void liftBtnClick(View v);
+
 
   }
 }

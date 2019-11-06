@@ -9,5 +9,7 @@
         <attr name="leftText" format="string" />
         <attr name="isShowRightBottom" format="boolean" />
         <attr name="rightBottomText" format="string" />
+        <attr name="isShowMidText" format="boolean" />
+        <attr name="isShowUserTv" format="boolean" />
     </declare-styleable>
 </resources>

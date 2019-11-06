@@ -9,4 +9,30 @@
     <string name="transaction">交易明细</string>
     <string name="kefu_qq">客服QQ:23456789</string>
     <string name="sing_out">退出登录</string>
+    <string name="login">登录</string>
+    <string name="back">返回</string>
+    <string name="regist">注册</string>
+    <string name="username">用户名</string>
+    <string name="username_hint">请输入账户手机号码</string>
+    <string name="password">登录密码</string>
+    <string name="password_hint">请输入登录密码</string>
+    <string name="tel">手机号</string>
+    <string name="submit">提交</string>
+    <string name="resetPassword">修改密码</string>
+    <string name="oldPassword">旧密码</string>
+    <string name="oldPasswordHint">请填写旧密码（6-16字符）</string>
+    <string name="newPassword">新密码</string>
+    <string name="newPasswordHint">请输入新密码（6-16字符）</string>
+    <string name="newPasswordQHint">请再次填写新密码（6-16字符）</string>
+    <string name="qrcode_login_hint">请使用选号助手APP扫一扫功能扫描二维码</string>
+    <string name="qrcode_regist_hint">请扫描二维码进行注册</string>
+    <string name="qrcode_help_hint">微信“扫一扫”，关注服务号下载“选号助手”</string>
+    <string name="close">关闭</string>
+    <string name="passwordTips">请确认您的密码</string>
+    <string name="userAgreement">用户协议</string>
+    <string name="upPage">上一页</string>
+    <string name="downPage">下一页</string>
+    <string name="text_test">
+        1213
+                </string>
 </resources>

@@ -6,231 +6,336 @@
     android:layout_height="match_parent"
     android:background="@mipmap/background"
     android:orientation="vertical"
+    android:paddingBottom="30dp"
     tools:context=".page.HomeActivity">
 
-    <com.zzrh.lottery.ui.HeadView
-        android:id="@+id/hv"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        app:isShowIcon="false"
-        app:isShowRightBottom="true"
-        app:leftText=""
-        app:rightBottomText="退出登录" />
 
     <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_gravity="center"
-        android:layout_weight="1">
+        android:layout_width="match_parent"
+        android:layout_height="81dp"
+        android:gravity="center_vertical"
+        android:paddingStart="68dp"
+        android:paddingLeft="68dp">
 
+        <TextView
+            android:id="@+id/tv_kefu_tel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="68dp"
+            android:layout_marginRight="68dp"
+            android:text="客服电话：027-88880000"
+            android:textColor="@color/yellow"
+            android:textSize="20sp" />
 
-        <Button
-            android:id="@+id/btn_left"
-            android:layout_width="120dp"
-            android:layout_height="120dp"
-            android:layout_centerVertical="true"
-            android:layout_marginEnd="80dp"
-            android:layout_marginRight="80dp"
-            android:background="@mipmap/sportslottery" />
+        <TextView
+            android:id="@+id/tv_kefu_qq"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="68dp"
+            android:layout_marginRight="68dp"
+            android:layout_toEndOf="@id/tv_kefu_tel"
+            android:layout_toRightOf="@id/tv_kefu_tel"
+            android:text="客服QQ：267859512"
+            android:textColor="@color/yellow"
+            android:textSize="20sp" />
 
-        <Button
-            android:id="@+id/btn_right"
-            android:layout_width="120dp"
-            android:layout_height="120dp"
-            android:layout_centerVertical="true"
-            android:layout_marginStart="80dp"
-            android:layout_marginLeft="80dp"
-            android:layout_toEndOf="@+id/btn_left"
-            android:layout_toRightOf="@+id/btn_left"
-            android:background="@mipmap/welfarelottery" />
+        <com.zzrh.lottery.ui.FocusButton
+            android:id="@+id/btn_top_left"
+            android:layout_width="114dp"
+            android:layout_height="34dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_toStartOf="@id/btn_top_right"
+            android:layout_toLeftOf="@id/btn_top_right"
+            android:background="@drawable/selector_bg_main_btn"
+            android:text="@string/regist"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
+
+        <com.zzrh.lottery.ui.FocusButton
+            android:id="@+id/btn_top_right"
+            android:layout_width="114dp"
+            android:layout_height="34dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginEnd="32dp"
+            android:layout_marginRight="32dp"
+            android:background="@drawable/selector_bg_main_btn"
+            android:text="@string/login"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
 
     </RelativeLayout>
 
-    <LinearLayout
-        android:id="@+id/rl1"
+    <com.zzrh.lottery.ui.FocusRelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:gravity="center"
-        android:orientation="horizontal">
+        android:layout_height="0dp"
+        android:layout_gravity="center"
+        android:layout_weight="1"
+        android:gravity="center">
 
+        <com.zzrh.lottery.ui.FocusImageView
+            android:id="@+id/btn_left"
+            android:layout_width="262dp"
+            android:layout_height="290dp"
+            android:layout_centerVertical="true"
+            android:layout_toStartOf="@id/v"
+            android:layout_toLeftOf="@id/v"
+            android:focusable="true"
+            android:padding="4dp"
+            android:src="@drawable/selector_bg_mian_btn_tc" />
 
-        <RelativeLayout
+        <View
+            android:id="@+id/v"
             android:layout_width="0dp"
-            android:layout_height="24dp"
-            android:layout_gravity="center"
-            android:layout_weight="1"
-            android:gravity="center">
+            android:layout_height="0dp"
+            android:layout_centerInParent="true"
+            android:layout_marginStart="35dp"
+            android:layout_marginLeft="35dp"
+            android:layout_marginEnd="35dp"
+            android:layout_marginRight="35dp"
+            android:background="@color/colorAccent" />
 
-            <ImageView
-                android:id="@+id/iv_qr_help"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:layout_marginEnd="4dp"
-                android:layout_marginRight="4dp"
-                android:src="@mipmap/help" />
+        <com.zzrh.lottery.ui.FocusImageView
+            android:id="@+id/btn_right"
+            android:layout_width="262dp"
+            android:layout_height="290dp"
+            android:layout_centerVertical="true"
+            android:layout_toEndOf="@id/v"
+            android:layout_toRightOf="@id/v"
+            android:focusable="true"
+            android:padding="4dp"
+            android:src="@drawable/selector_bg_mian_btn_fc" />
 
-            <TextView
-                android:id="@+id/tv_qr_help"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:layout_toEndOf="@id/iv_qr_help"
-                android:layout_toRightOf="@id/iv_qr_help"
-                android:text="扫码注册"
-                android:textColor="@color/white" />
-        </RelativeLayout>
+    </com.zzrh.lottery.ui.FocusRelativeLayout>
 
-        <RelativeLayout
-            android:layout_width="0dp"
-            android:layout_height="24dp"
-            android:layout_gravity="center"
-            android:layout_weight="1"
-            android:gravity="center">
-
-            <TextView
-                android:id="@+id/tv_tel"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:text="@string/kefu_tel"
-                android:textColor="@color/yellow" />
-        </RelativeLayout>
+    <!--    <LinearLayout-->
+    <!--        android:id="@+id/rl1"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="120dp"-->
+    <!--        android:gravity="center"-->
+    <!--        android:orientation="horizontal">-->
 
 
-        <RelativeLayout
-            android:layout_width="0dp"
-            android:layout_height="24dp"
-            android:layout_gravity="center"
-            android:layout_weight="1"
-            android:gravity="center">
+    <!--        <com.zzrh.lottery.ui.FocusRelativeLayout-->
+    <!--            android:layout_width="0dp"-->
+    <!--            android:layout_height="match_parent"-->
+    <!--            android:layout_weight="1"-->
+    <!--            android:focusable="true"-->
+    <!--            android:gravity="center">-->
 
-            <TextView
-                android:id="@+id/tv_qq"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:text="@string/kefu_qq"
-                android:textColor="@color/yellow" />
-        </RelativeLayout>
+    <!--            <ImageView-->
+    <!--                android:id="@+id/iv_qr_help"-->
+    <!--                android:layout_width="wrap_content"-->
+    <!--                android:layout_height="wrap_content"-->
+    <!--                android:layout_alignTop="@id/tv_qr_help"-->
+    <!--                android:layout_alignBottom="@id/tv_qr_help"-->
+    <!--                android:src="@mipmap/help" />-->
 
-    </LinearLayout>
+    <!--            <com.zzrh.lottery.ui.FocusTextView-->
+    <!--                android:id="@+id/tv_qr_help"-->
+    <!--                android:layout_width="wrap_content"-->
+    <!--                android:layout_height="wrap_content"-->
+    <!--                android:layout_toEndOf="@id/iv_qr_help"-->
+    <!--                android:layout_toRightOf="@id/iv_qr_help"-->
+    <!--                android:text="扫码注册"-->
+    <!--                android:textColor="@color/white"-->
+    <!--                android:textSize="@dimen/ts_text_btn" />-->
+    <!--        </com.zzrh.lottery.ui.FocusRelativeLayout>-->
 
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="32dp"
-        android:scaleType="fitXY"
-        android:src="@mipmap/light1" />
+    <!--        <com.zzrh.lottery.ui.FocusRelativeLayout-->
+    <!--            android:layout_width="0dp"-->
+    <!--            android:layout_height="match_parent"-->
+    <!--            android:layout_gravity="center"-->
+    <!--            android:layout_weight="1"-->
+    <!--            android:gravity="center">-->
+
+    <!--            <com.zzrh.lottery.ui.FocusTextView-->
+    <!--                android:id="@+id/tv_tel"-->
+    <!--                android:layout_width="wrap_content"-->
+    <!--                android:layout_height="wrap_content"-->
+    <!--                android:layout_centerInParent="true"-->
+    <!--                android:text="@string/kefu_tel"-->
+    <!--                android:textColor="@color/yellow"-->
+    <!--                android:textSize="@dimen/ts_text_btn" />-->
+    <!--        </com.zzrh.lottery.ui.FocusRelativeLayout>-->
+
+
+    <!--        <com.zzrh.lottery.ui.FocusRelativeLayout-->
+    <!--            android:layout_width="0dp"-->
+    <!--            android:layout_height="match_parent"-->
+    <!--            android:layout_gravity="center"-->
+    <!--            android:layout_weight="1"-->
+    <!--            android:gravity="center">-->
+
+    <!--            <com.zzrh.lottery.ui.FocusTextView-->
+    <!--                android:id="@+id/tv_qq"-->
+    <!--                android:layout_width="wrap_content"-->
+    <!--                android:layout_height="wrap_content"-->
+    <!--                android:layout_centerInParent="true"-->
+    <!--                android:text="@string/kefu_qq"-->
+    <!--                android:textColor="@color/yellow"-->
+    <!--                android:textSize="@dimen/ts_text_btn" />-->
+    <!--        </com.zzrh.lottery.ui.FocusRelativeLayout>-->
+
+    <!--    </LinearLayout>-->
+
+    <!--    <ImageView-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="32dp"-->
+    <!--        android:scaleType="fitXY"-->
+    <!--        android:src="@mipmap/light1" />-->
 
     <LinearLayout
         android:id="@+id/rl2"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="140dp"
         android:gravity="center"
         android:orientation="horizontal">
 
         <RelativeLayout
             android:layout_width="0dp"
-            android:layout_height="24dp"
-            android:layout_gravity="center"
+            android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center">
 
-            <ImageView
-                android:id="@+id/iv_1"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:layout_marginEnd="4dp"
-                android:layout_marginRight="4dp"
-                android:src="@mipmap/betting" />
-
-            <TextView
-                android:id="@+id/tv_1"
+            <com.zzrh.lottery.ui.FocusRelativeLayout
+                android:id="@+id/rl_qrcode_login"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:layout_toEndOf="@id/iv_1"
+                android:layout_height="80dp"
+                android:focusable="true"
+                android:gravity="center"
+                android:padding="12dp">
 
-                android:layout_toRightOf="@id/iv_1"
-                android:text="扫码投注"
-                android:textColor="@color/white" />
+                <ImageView
+                    android:id="@+id/iv_1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@id/tv_1"
+                    android:layout_alignBottom="@id/tv_1"
+                    android:src="@mipmap/login" />
+
+                <com.zzrh.lottery.ui.FocusTextView
+                    android:id="@+id/tv_1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toEndOf="@id/iv_1"
+                    android:layout_toRightOf="@id/iv_1"
+                    android:text="扫码登录"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/ts_text_btn" />
+            </com.zzrh.lottery.ui.FocusRelativeLayout>
+
         </RelativeLayout>
 
         <RelativeLayout
             android:layout_width="0dp"
-            android:layout_height="24dp"
-            android:layout_gravity="center"
+            android:layout_height="match_parent"
+
             android:layout_weight="1"
             android:gravity="center">
 
-            <ImageView
-                android:id="@+id/iv_2"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:layout_marginEnd="4dp"
-                android:layout_marginRight="4dp"
-                android:src="@mipmap/login" />
-
-            <TextView
-                android:id="@+id/tv_2"
+            <com.zzrh.lottery.ui.FocusRelativeLayout
+                android:id="@+id/rl_qrcode_regist"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:layout_toEndOf="@id/iv_2"
-                android:layout_toRightOf="@id/iv_2"
-                android:text="扫码登录"
-                android:textColor="@color/white" />
+                android:layout_height="80dp"
+                android:focusable="true"
+
+                android:gravity="center"
+                android:padding="12dp">
+
+                <ImageView
+                    android:id="@+id/iv_2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@id/tv_2"
+                    android:layout_alignBottom="@id/tv_2"
+                    android:src="@mipmap/register" />
+
+                <com.zzrh.lottery.ui.FocusTextView
+                    android:id="@+id/tv_2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toEndOf="@id/iv_2"
+                    android:layout_toRightOf="@id/iv_2"
+                    android:text="扫码注册"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/ts_text_btn" />
+            </com.zzrh.lottery.ui.FocusRelativeLayout>
         </RelativeLayout>
 
         <RelativeLayout
             android:layout_width="0dp"
-            android:layout_height="24dp"
-            android:layout_gravity="center"
+            android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center">
 
-            <ImageView
-                android:id="@+id/iv_3"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:layout_marginEnd="4dp"
-                android:layout_marginRight="4dp"
-                android:src="@mipmap/register" />
-
-            <TextView
-                android:id="@+id/tv_3"
+            <com.zzrh.lottery.ui.FocusRelativeLayout
+                android:id="@+id/rl_qrcode_help"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:layout_toEndOf="@id/iv_3"
-                android:layout_toRightOf="@id/iv_3"
-                android:text="扫码注册"
-                android:textColor="@color/white" />
+                android:layout_height="80dp"
+                android:focusable="true"
+                android:gravity="center"
+
+                android:padding="12dp">
+
+                <ImageView
+                    android:id="@+id/iv_3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@id/tv_3"
+                    android:layout_alignBottom="@id/tv_3"
+                    android:src="@mipmap/choose" />
+
+                <com.zzrh.lottery.ui.FocusTextView
+                    android:id="@+id/tv_3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toEndOf="@id/iv_3"
+                    android:layout_toRightOf="@id/iv_3"
+                    android:text="选号助手"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/ts_text_btn" />
+            </com.zzrh.lottery.ui.FocusRelativeLayout>
+
         </RelativeLayout>
 
         <RelativeLayout
             android:layout_width="0dp"
-            android:layout_height="24dp"
-            android:layout_gravity="center"
+            android:layout_height="match_parent"
             android:layout_weight="1"
             android:gravity="center">
 
-            <ImageView
-                android:id="@+id/iv_4"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:layout_marginEnd="4dp"
-                android:layout_marginRight="4dp"
-                android:src="@mipmap/choose" />
-
-            <TextView
-                android:id="@+id/tv_4"
+            <com.zzrh.lottery.ui.FocusRelativeLayout
+                android:id="@+id/rl_reset_password"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:layout_toEndOf="@id/iv_4"
-                android:layout_toRightOf="@id/iv_4"
-                android:text="选号助手"
-                android:textColor="@color/white" />
+                android:layout_height="80dp"
+
+                android:focusable="true"
+                android:gravity="center"
+                android:padding="12dp">
+
+                <ImageView
+                    android:id="@+id/iv_4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@id/tv_4"
+                    android:layout_alignBottom="@id/tv_4"
+                    android:src="@mipmap/revis" />
+
+                <com.zzrh.lottery.ui.FocusTextView
+                    android:id="@+id/tv_4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toEndOf="@id/iv_4"
+                    android:layout_toRightOf="@id/iv_4"
+                    android:gravity="center"
+                    android:padding="4dp"
+                    android:text="修改密码"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/ts_text_btn" />
+            </com.zzrh.lottery.ui.FocusRelativeLayout>
+
         </RelativeLayout>
     </LinearLayout>
 </LinearLayout>

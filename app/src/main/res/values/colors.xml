@@ -2,10 +2,22 @@
 <resources>
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
-    <color name="colorAccent">#D81B60</color>
+    <color name="colorAccent">#ffffff</color>
     <color name="black">#000</color>
     <color name="purple">#883CB8</color>
     <color name="white">#fff</color>
     <color name="tea_a">#BFCF330B</color>
     <color name="yellow">#f4ea68</color>
+    <color name="gray_a">#55333333</color>
+    <color name="white_a">#99FFFFFF</color>
+    <color name="btnSelectColor">#FD822B</color>
+    <color name="btnUnSelectColor">#FFFFFF</color>
+    <color name="btnSelectStartColor">#F58FFE</color>
+    <color name="btnSelectEndColor">#A429DC</color>
+    <color name="btnUnSelectStartColor">#FD892C</color>
+    <color name="btnUnSelectEndColor">#FE4D27</color>
+    <color name="gray">#333333</color>
+    <color name="btnOffEnableStartColor">#C7C5C5</color>
+    <color name="btnOffEnableEndColor">#999999</color>
+<color name="bgImgGrayAlpha">#33000000</color>
 </resources>

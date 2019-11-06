@@ -1,0 +1,335 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/background"
+    tools:context=".page.RegisterActivity">
+
+    <RelativeLayout
+        android:id="@+id/head"
+        android:layout_width="match_parent"
+        android:layout_height="81dp"
+        android:background="@drawable/bg_head"
+        android:gravity="center_vertical"
+        android:paddingStart="50dp"
+        android:paddingLeft="50dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/login"
+            android:textColor="@color/yellow"
+            android:textSize="@dimen/mr_screen" />
+
+        <com.zzrh.lottery.ui.FocusButton
+            android:id="@+id/btn_back"
+            android:layout_width="114dp"
+            android:layout_height="34dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginEnd="50dp"
+            android:layout_marginRight="50dp"
+            android:background="@drawable/selector_bg_main_btn"
+            android:text="@string/back"
+            android:textColor="@color/white"
+            android:textSize="@dimen/textSizeBtn" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/head"
+        android:layout_marginLeft="110dp"
+        android:layout_marginTop="22dp"
+        android:layout_marginRight="110dp">
+
+        <RelativeLayout
+            android:id="@+id/rl_qrcode"
+            android:layout_width="215dp"
+            android:layout_height="442dp"
+            android:layout_marginRight="28dp"
+            android:background="@color/gray_a"
+            android:gravity="center"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp">
+
+            <ImageView
+                android:id="@+id/iv_qrcode"
+                android:layout_width="182dp"
+                android:layout_height="182dp"
+                android:layout_marginBottom="16dp"
+                android:src="@mipmap/ic_launcher" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/iv_qrcode"
+                android:gravity="center_horizontal"
+                android:text="扫码注册 简单快捷"
+                android:textColor="@color/white"
+                android:textSize="21sp" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_input"
+            android:layout_width="match_parent"
+            android:layout_height="442dp"
+            android:layout_alignTop="@id/rl_qrcode"
+            android:layout_toEndOf="@id/rl_qrcode"
+            android:layout_toRightOf="@id/rl_qrcode">
+
+            <TextView
+                android:id="@+id/tv_tel_title"
+                android:layout_width="216dp"
+                android:layout_height="52dp"
+                android:layout_marginEnd="24dp"
+                android:layout_marginRight="24dp"
+                android:background="@drawable/bg_text_violet"
+                android:gravity="center"
+                android:text="@string/tel"
+                android:textColor="@color/white"
+                android:textSize="25sp" />
+
+            <EditText
+                android:id="@+id/et_tel"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:layout_toEndOf="@id/tv_tel_title"
+                android:layout_toRightOf="@id/tv_tel_title"
+                android:background="@color/gray_a"
+                android:hint="请输入手机号码（用于账户登录）"
+                android:paddingStart="42dp"
+                android:paddingLeft="42dp"
+                android:textColor="@color/white_a"
+                android:textColorHint="@color/white_a"
+                android:textSize="25sp" />
+
+            <TextView
+                android:id="@+id/tv_password_title"
+                android:layout_width="216dp"
+                android:layout_height="52dp"
+                android:layout_below="@id/tv_tel_title"
+                android:layout_marginTop="26dp"
+                android:layout_marginEnd="24dp"
+                android:layout_marginRight="24dp"
+                android:background="@drawable/bg_text_violet"
+                android:gravity="center"
+                android:text="@string/password"
+                android:textColor="@color/white"
+                android:textSize="25sp" />
+
+            <EditText
+                android:id="@+id/et_password"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:layout_alignTop="@id/tv_password_title"
+                android:layout_toEndOf="@id/tv_tel_title"
+                android:layout_toRightOf="@id/tv_tel_title"
+                android:background="@color/gray_a"
+                android:hint="请设置登录密码（6-16个字符）"
+                android:paddingStart="42dp"
+                android:paddingLeft="42dp"
+                android:minLines="6"
+                android:maxLength="16"
+                android:textColor="@color/white_a"
+                android:textColorHint="@color/white_a"
+                android:textSize="25sp" />
+
+            <TextView
+                android:id="@+id/tv_password_q_title"
+                android:layout_width="216dp"
+                android:layout_height="52dp"
+                android:layout_below="@id/tv_password_title"
+                android:layout_marginTop="26dp"
+                android:layout_marginEnd="24dp"
+                android:layout_marginRight="24dp"
+                android:background="@drawable/bg_text_violet"
+                android:gravity="center"
+                android:text="确认密码"
+                android:textColor="@color/white"
+                android:textSize="25sp" />
+
+            <EditText
+                android:id="@+id/et_password_q"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:layout_alignTop="@id/tv_password_q_title"
+                android:layout_toEndOf="@id/tv_tel_title"
+                android:layout_toRightOf="@id/tv_tel_title"
+                android:background="@color/gray_a"
+                android:hint="请确认登录密码（6-16个字符）"
+                android:minLines="6"
+                android:maxLength="16"
+                android:paddingStart="42dp"
+                android:paddingLeft="42dp"
+                android:textColor="@color/white_a"
+                android:textColorHint="@color/white_a"
+                android:textSize="25sp" />
+
+            <TextView
+                android:id="@+id/tv_name_title"
+                android:layout_width="216dp"
+                android:layout_height="52dp"
+                android:layout_below="@id/tv_password_q_title"
+                android:layout_marginTop="26dp"
+                android:layout_marginEnd="24dp"
+                android:layout_marginRight="24dp"
+                android:background="@drawable/bg_text_violet"
+                android:gravity="center"
+                android:text="真实姓名"
+                android:textColor="@color/white"
+                android:textSize="25sp" />
+
+            <EditText
+                android:id="@+id/et_name"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:layout_alignTop="@id/tv_name_title"
+                android:layout_toEndOf="@id/tv_tel_title"
+                android:layout_toRightOf="@id/tv_tel_title"
+                android:background="@color/gray_a"
+                android:hint="领取大奖的凭证，不可更改"
+                android:paddingStart="42dp"
+                android:paddingLeft="42dp"
+                android:textColor="@color/white_a"
+                android:textColorHint="@color/white_a"
+                android:textSize="25sp" />
+
+            <TextView
+                android:id="@+id/tv_cardid_title"
+                android:layout_width="216dp"
+                android:layout_height="52dp"
+                android:layout_below="@id/tv_name_title"
+                android:layout_marginTop="26dp"
+                android:layout_marginEnd="24dp"
+                android:layout_marginRight="24dp"
+                android:background="@drawable/bg_text_violet"
+                android:gravity="center"
+                android:text="身份证号码"
+                android:textColor="@color/white"
+                android:textSize="25sp" />
+
+            <EditText
+                android:id="@+id/et_cardid"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:layout_alignTop="@id/tv_cardid_title"
+                android:layout_toEndOf="@id/tv_tel_title"
+                android:layout_toRightOf="@id/tv_tel_title"
+                android:background="@color/gray_a"
+                android:hint="未满18岁不可购买彩票"
+                android:paddingStart="42dp"
+                android:maxLength="20"
+                android:paddingLeft="42dp"
+                android:textColor="@color/white_a"
+                android:textColorHint="@color/white_a"
+                android:textSize="25sp" />
+
+            <com.zzrh.lottery.ui.FocusTextLine
+                android:id="@+id/tv_code_title"
+                android:layout_width="339dp"
+                android:layout_height="52dp"
+                android:layout_below="@id/tv_cardid_title"
+                android:layout_marginTop="25dp"
+                android:layout_marginEnd="24dp"
+                android:layout_marginRight="24dp"
+                android:background="@drawable/bg_titile_green"
+                android:focusable="true"
+                android:gravity="center"
+                android:text="获取验证码"
+                android:textColor="@color/white"
+                android:textSize="25sp" />
+
+            <EditText
+                android:id="@+id/et_code"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:layout_alignTop="@id/tv_code_title"
+                android:layout_toEndOf="@id/tv_code_title"
+                android:layout_toRightOf="@id/tv_code_title"
+                android:background="@color/gray_a"
+                android:hint="请输入短信验证码"
+                android:paddingStart="42dp"
+                android:paddingLeft="42dp"
+                android:textColor="@color/white_a"
+                android:textColorHint="@color/white_a"
+                android:textSize="25sp" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/rl_input"
+            android:layout_alignStart="@id/rl_input"
+            android:layout_alignLeft="@id/rl_input"
+            android:layout_marginTop="26dp"
+            android:layout_marginBottom="24dp"
+            android:gravity="center_vertical">
+
+            <!--            <com.zzrh.lottery.ui.FocusImageView-->
+            <!--                android:id="@+id/iv_check"-->
+            <!--                android:layout_width="24dp"-->
+            <!--                android:layout_height="24dp"-->
+            <!--                android:layout_centerVertical="true"-->
+            <!--                android:layout_margin="4dp"-->
+            <!--                android:focusable="true"-->
+            <!--                android:src="@drawable/ic_check_box" />-->
+
+            <androidx.appcompat.widget.AppCompatCheckBox
+                android:id="@+id/iv_check"
+                style="@style/Widget.AppCompat.CompoundButton.CheckBox"
+                android:layout_width="30dp"
+                android:layout_height="24dp"
+                android:layout_centerVertical="true"
+                android:buttonTint="@color/white"
+                android:checked="true"
+                android:gravity="center" />
+
+            <TextView
+                android:id="@+id/tv_ty"
+                android:layout_width="wrap_content"
+                android:layout_height="44dp"
+                android:layout_gravity="center"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_toEndOf="@id/iv_check"
+                android:layout_toRightOf="@id/iv_check"
+                android:gravity="center_vertical"
+                android:text="同意 "
+                android:textColor="@color/white"
+                android:textSize="24sp" />
+
+            <com.zzrh.lottery.ui.FocusTextLine
+                android:id="@+id/tv_xieyi"
+                android:layout_width="wrap_content"
+                android:layout_height="44dp"
+                android:layout_toEndOf="@id/tv_ty"
+                android:layout_toRightOf="@id/tv_ty"
+                android:background="@null"
+                android:focusable="true"
+                android:gravity="center_vertical"
+                android:text="《彩票用户服务协议》"
+                android:textColor="@color/white"
+                android:textSize="24sp" />
+
+        </RelativeLayout>
+
+        <com.zzrh.lottery.ui.FocusButton
+            android:id="@+id/btn_submit"
+            android:layout_width="268dp"
+            android:layout_height="62dp"
+            android:layout_below="@id/rl"
+            android:layout_centerInParent="true"
+            android:layout_margin="4dp"
+            android:background="@drawable/selector_bg_main_btn"
+            android:text="@string/submit"
+            android:textColor="@color/white"
+            android:textSize="32sp" />
+    </RelativeLayout>
+
+
+</RelativeLayout>

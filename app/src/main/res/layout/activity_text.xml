@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/background"
+    tools:context=".page.TextActivity">
+
+    <RelativeLayout
+        android:id="@+id/head"
+        android:layout_width="match_parent"
+        android:layout_height="81dp"
+        android:background="@drawable/bg_head"
+        android:gravity="center_vertical"
+        android:paddingStart="50dp"
+        android:paddingLeft="50dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/userAgreement"
+            android:textColor="@color/yellow"
+            android:textSize="@dimen/mr_screen" />
+
+        <com.zzrh.lottery.ui.FocusButton
+            android:id="@+id/btn_back"
+            android:layout_width="114dp"
+            android:layout_height="34dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginEnd="50dp"
+            android:layout_marginRight="50dp"
+            android:background="@drawable/selector_bg_main_btn"
+            android:text="@string/back"
+            android:textColor="@color/white"
+            android:textSize="@dimen/textSizeBtn" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/head">
+
+        <RelativeLayout
+            android:id="@+id/rl_text"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/ll">
+
+            <TextView
+                android:id="@+id/tv"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/text_test"
+                android:textColor="@color/white"
+                android:textSize="@dimen/textSizeTitleBar" />
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/ll"
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            android:layout_alignParentBottom="true"
+            android:paddingLeft="280dp"
+            android:paddingRight="280dp">
+
+            <com.zzrh.lottery.ui.FocusTextLine
+                android:id="@+id/tv_up"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:focusable="true"
+                android:gravity="center"
+                android:text="@string/upPage"
+                android:textColor="@color/white"
+                android:textSize="@dimen/textSizeTitleBar" />
+
+            <com.zzrh.lottery.ui.FocusTextLine
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="1/6"
+                android:textColor="@color/white"
+                android:textSize="@dimen/textSizeTitleBar" />
+
+            <com.zzrh.lottery.ui.FocusTextLine
+                android:id="@+id/tv_down"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:focusable="true"
+                android:gravity="center"
+                android:text="@string/downPage"
+                android:textColor="@color/white"
+                android:textSize="@dimen/textSizeTitleBar" />
+
+        </LinearLayout>
+    </RelativeLayout>
+
+</RelativeLayout>

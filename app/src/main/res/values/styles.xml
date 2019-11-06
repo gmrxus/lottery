@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
@@ -14,5 +14,14 @@
         <item name="android:windowFullscreen">true</item>
     </style>
 
+    <!--    <style name="MyCheckBox" parent="@android:style/androidx.appcompat.widget.AppCompatCheckBox">-->
+    <!--        <item name="android:checkedButton">@drawable/select_my_check_box</item>-->
+    <!--    </style>-->
+
+        <style name="MyQrCodeDialog" parent="@android:style/Theme.Dialog">
+            <item name="android:windowBackground">@android:color/transparent</item>
+            <item name="android:windowNoTitle">true</item>
+            <item name="android:backgroundDimEnabled">true</item>
+        </style>
 
 </resources>

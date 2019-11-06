@@ -4,14 +4,158 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@mipmap/background"
     tools:context=".page.LoginActivity">
 
-    <com.zzrh.lottery.ui.HeadView
+    <RelativeLayout
+        android:id="@+id/head"
         android:layout_width="match_parent"
-        android:layout_height="80dp"
-        app:isShowIcon="true"
-        app:isShowRightBottom="true"
-        app:leftText="111"
-        app:rightBottomText="222" />
+        android:layout_height="81dp"
+        android:background="@drawable/bg_head"
+        android:gravity="center_vertical"
+        android:paddingStart="50dp"
+        android:paddingLeft="50dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/login"
+            android:textColor="@color/yellow"
+            android:textSize="@dimen/mr_screen" />
+
+        <com.zzrh.lottery.ui.FocusButton
+            android:id="@+id/btn_back"
+            android:layout_width="114dp"
+            android:layout_height="34dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginEnd="50dp"
+            android:layout_marginRight="50dp"
+            android:background="@drawable/selector_bg_main_btn"
+            android:text="@string/back"
+            android:textColor="@color/white"
+            android:textSize="@dimen/textSizeBtnHead" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/head"
+        android:layout_marginLeft="110dp"
+        android:layout_marginTop="175dp"
+        android:layout_marginRight="110dp">
+
+        <com.zzrh.lottery.ui.FocusImageView
+            android:id="@+id/iv_eyes"
+            android:layout_width="53dp"
+            android:layout_height="53dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginLeft="10dp"
+            android:focusableInTouchMode="true"
+            android:layout_marginTop="91dp"
+            android:focusable="true"
+            android:src="@drawable/ic_eye_off" />
+
+        <TextView
+            android:id="@+id/tv_user_title"
+            android:layout_width="match_parent"
+            android:layout_height="53dp"
+            android:layout_alignTop="@id/et_tel"
+            android:layout_marginEnd="24dp"
+            android:layout_marginRight="24dp"
+            android:layout_toStartOf="@id/et_tel"
+            android:layout_toLeftOf="@id/et_tel"
+            android:background="@drawable/bg_text_violet"
+            android:gravity="center"
+            android:text="@string/username"
+            android:textColor="@color/white"
+            android:textSize="25sp" />
+
+        <EditText
+            android:id="@+id/et_tel"
+            android:layout_width="779dp"
+            android:layout_height="53dp"
+            android:layout_alignStart="@id/et_password"
+            android:layout_alignLeft="@id/et_password"
+            android:layout_alignEnd="@id/et_password"
+            android:layout_alignRight="@id/et_password"
+            android:background="@drawable/shape_bg_edit"
+            android:hint="@string/username_hint"
+            android:paddingStart="16dp"
+            android:paddingLeft="16dp"
+            android:textSize="25sp" />
+
+        <TextView
+            android:id="@+id/tv_password_title"
+            android:layout_width="match_parent"
+            android:layout_height="53dp"
+            android:layout_alignTop="@id/et_password"
+            android:layout_toStartOf="@id/et_password"
+            android:layout_toLeftOf="@id/et_password"
+            android:background="@drawable/bg_text_violet"
+            android:gravity="center"
+            android:text="@string/password"
+            android:textColor="@color/white"
+            android:textSize="25sp" />
+
+        <EditText
+            android:id="@+id/et_password"
+            android:layout_width="779dp"
+            android:layout_height="53dp"
+            android:layout_alignTop="@id/iv_eyes"
+            android:layout_marginStart="24dp"
+            android:layout_marginLeft="24dp"
+            android:layout_marginTop="5dp"
+            android:layout_toStartOf="@id/iv_eyes"
+            android:layout_toLeftOf="@id/iv_eyes"
+            android:background="@drawable/shape_bg_edit"
+            android:hint="@string/password_hint"
+            android:inputType="textPassword"
+            android:paddingStart="16dp"
+            android:paddingLeft="16dp"
+            android:textSize="25sp" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_password_title"
+            android:layout_marginTop="120dp">
+
+            <View
+                android:id="@+id/v"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_centerInParent="true"
+                android:layout_marginLeft="24dp"
+                android:layout_marginRight="24dp" />
+
+            <com.zzrh.lottery.ui.FocusButton
+                android:id="@+id/btn_register"
+                android:layout_width="212dp"
+                android:layout_height="52dp"
+                android:layout_margin="8dp"
+                android:layout_toStartOf="@id/v"
+                android:layout_toLeftOf="@id/v"
+                android:background="@drawable/selector_bg_main_btn"
+                android:text="@string/regist"
+                android:textColor="@color/white"
+                android:textSize="25sp" />
+
+            <com.zzrh.lottery.ui.FocusButton
+                android:id="@+id/btn_login"
+                android:layout_width="212dp"
+                android:layout_height="52dp"
+                android:layout_margin="8dp"
+                android:layout_toEndOf="@id/v"
+                android:layout_toRightOf="@id/v"
+                android:background="@drawable/selector_bg_main_btn"
+                android:text="@string/login"
+                android:textColor="@color/white"
+                android:textSize="25sp" />
+        </RelativeLayout>
+
+
+    </RelativeLayout>
 
 </RelativeLayout>
