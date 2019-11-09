@@ -6,7 +6,7 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
     <application
         android:name=".App"
         android:allowBackup="true"
@@ -15,10 +15,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/MyTheme">
+        <uses-library
+            android:name="org.apache.http.legacy"
+            android:required="false" />
         <activity android:name=".page.TextActivity"></activity>
         <activity android:name=".dialog.QrCodeDialogActivity" />
         <activity android:name=".page.ResetPasswordActivity" />
-        <activity android:name=".page.RegisterActivity" />
+        <activity android:name=".page.RegisterActivity" android:launchMode="singleTop"/>
         <activity
             android:name=".page.HomeActivity"
             android:screenOrientation="landscape">

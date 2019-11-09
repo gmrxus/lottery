@@ -1,8 +1,10 @@
 package com.zzrh.lottery.page;
 
-import androidx.appcompat.widget.AppCompatCheckBox;
-
 import android.os.Bundle;
+import android.os.CountDownTimer;
+import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
@@ -10,21 +12,30 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.appcompat.widget.AppCompatCheckBox;
+
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import com.rabtman.wsmanager.WsManager;
-import com.rabtman.wsmanager.listener.WsStatusListener;
+import com.zzrh.lottery.App;
 import com.zzrh.lottery.R;
-import com.zzrh.lottery.base.BaseActivity;
+import com.zzrh.lottery.BaseActivity;
+import com.zzrh.lottery.ui.EyeCheckBox;
 import com.zzrh.lottery.util.QrCodeUtil;
 import com.zzrh.lottery.util.ToastUtils;
+import com.zzrh.lottery.util.http.HttpUtil;
+import com.zzrh.lottery.util.http.Urls;
 
-import java.util.Timer;
-import java.util.concurrent.TimeUnit;
+import java.io.IOException;
 
-import okhttp3.OkHttpClient;
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.FormBody;
 import okhttp3.Response;
-import okio.ByteString;
 
 public class RegisterActivity extends BaseActivity {
+  private static final String TAG = "RegisterActivity";
 
   private AppCompatCheckBox ivCheck;
   boolean icCheck = true;
@@ -40,6 +51,11 @@ public class RegisterActivity extends BaseActivity {
   private ImageView ivQrCode;
   private TextView tvXieyi;
   private WsManager wsManager;
+  private String qrCodeUrl = "";
+  private long pageCountDown = 0;
+  private CountDownTimer pageCountDownTimer;
+  private EyeCheckBox cbEyePassword;
+  private EyeCheckBox cbEyePasswordQ;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +77,8 @@ public class RegisterActivity extends BaseActivity {
     tvCodeTitle = findViewById(R.id.tv_code_title);
     tvXieyi = findViewById(R.id.tv_xieyi);
     btnSubmit = findViewById(R.id.btn_submit);
+    cbEyePassword = findViewById(R.id.cb_eye_password);
+    cbEyePasswordQ = findViewById(R.id.cb_eye_password_q);
     btnBack.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
@@ -75,85 +93,317 @@ public class RegisterActivity extends BaseActivity {
         btnSubmit.setBackgroundResource(isChecked ? R.drawable.selector_bg_main_btn : R.drawable.selector_of_enable);
       }
     });
-    ivQrCode.setImageBitmap(QrCodeUtil.createQRCodeBitmap("https://www.baidu.com",160,160));
-    tvXieyi.setOnClickListener(new View.OnClickListener() {
-      @Override
-      public void onClick(View v) {
-        go2Activity(TextActivity.class);
-      }
-    });
+
 
     btnSubmit.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
-        String tel = etTel.getText().toString();
         String password = etPassword.getText().toString();
         String passwordQ = etPasswordQ.getText().toString();
-        String name = etName.getText().toString();
-        String cardId = etCardId.getText().toString();
-        String code = etCode.getText().toString();
         if (password.isEmpty() || !password.equals(passwordQ)) {
           ToastUtils.show(R.string.passwordTips);
           return;
         }
+        register();
+      }
+    });
+    tvCodeTitle.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+
+        getCheckCode();
+      }
+    });
+    cbEyePassword.setOnCheckedChangeListener(new EyeCheckBox.OnCheckedChangeListener() {
+      @Override
+      public void checkedListener(boolean isCheck) {
+        Log.e(TAG, "checkedListener: " + isCheck);
+        //如果选中，显示密码
+        etPassword.setTransformationMethod(isCheck ? PasswordTransformationMethod.getInstance() : HideReturnsTransformationMethod.getInstance());
+      }
+    });
+    cbEyePasswordQ.setOnCheckedChangeListener(new EyeCheckBox.OnCheckedChangeListener() {
+      @Override
+      public void checkedListener(boolean isCheck) {
+        etPasswordQ.setTransformationMethod(isCheck ? PasswordTransformationMethod.getInstance() : HideReturnsTransformationMethod.getInstance());
+
       }
     });
 
+  }
 
+  private void register() {
+    String tel = etTel.getText().toString();
+    String password = etPassword.getText().toString();
+    String name = etName.getText().toString();
+    String cardId = etCardId.getText().toString();
+    String code = etCode.getText().toString();
+    FormBody body = new FormBody.Builder()
+        .add("tel", tel)
+        .add("password", password)
+        .add("realName", name)
+        .add("cardId", cardId)
+        .add("checkCode", code)
+        .build();
+    HttpUtil.postAsync(Urls.register, body, new Callback() {
+      @Override
+      public void onFailure(Call call, final IOException e) {
+        Log.e(TAG, "onFailure: ", e);
+        runOnUiThread(new Runnable() {
+          @Override
+          public void run() {
+            ToastUtils.show(e.getMessage());
+          }
+        });
+      }
+
+      @Override
+      public void onResponse(Call call, Response response) {
+        try {
+          final String string = response.body().string();
+          JsonElement element = JsonParser.parseString(string);
+          if (!element.isJsonObject()) {
+            runOnUiThread(new Runnable() {
+              @Override
+              public void run() {
+                ToastUtils.show(string);
+
+              }
+            });
+            return;
+          }
+          final JsonObject object = element.getAsJsonObject();
+          String code = object.get("code").getAsString();
+          if (!"0000".equals(code)) {
+            runOnUiThread(new Runnable() {
+              @Override
+              public void run() {
+                ToastUtils.show(string);
+
+              }
+            });
+            return;
+          }
+          runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+              ToastUtils.show(object.get("msg").getAsString());
+              finish();
+            }
+          });
+        } catch (final IOException e) {
+          e.printStackTrace();
+          runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+              ToastUtils.show(e.getMessage());
+            }
+          });
+        }
+      }
+    });
   }
 
   @Override
   protected void onResume() {
     super.onResume();
-    webSocket();
+//    webSocket();
+    loadRegisterQrcode();
+//    CountDownTimer countDownTimer = getCountDownTimer();
+//    if (null != countDownTimer) {
+//      countDownTimer.cancel();
+//      countDownTimer = null;
+//    }
+//    countdown();
+    loadBaseCountDownTimer();
 
   }
-  private void webSocket(){
-    OkHttpClient okHttpClient = new OkHttpClient().newBuilder()
-        .pingInterval(15, TimeUnit.SECONDS)
-        .retryOnConnectionFailure(true)
+
+  private void loadRegisterQrcode() {
+    FormBody body = new FormBody.Builder()
+        .add("type", "1")
         .build();
-    wsManager = new WsManager.Builder(this)
-        .wsUrl("ws://localhost:2333/")
-        .needReconnect(true)
-        .client(okHttpClient)
-        .build();
-    wsManager.startConnect();
-    wsManager.setWsStatusListener(new WsStatusListener() {
+    HttpUtil.postAsync(Urls.GET_QRCODE, body, new Callback() {
       @Override
-      public void onOpen(Response response) {
-        super.onOpen(response);
+      public void onFailure(Call call, final IOException e) {
+        Log.e(TAG, "onFailure: ", e);
+        runOnUiThread(new Runnable() {
+          @Override
+          public void run() {
+            ToastUtils.show(e.getMessage());
+          }
+        });
       }
 
       @Override
-      public void onMessage(String text) {
-        super.onMessage(text);
-      }
+      public void onResponse(Call call, Response response) throws IOException {
+        final String string = response.body().string();
+        JsonElement element = JsonParser.parseString(string);
+        if (!element.isJsonObject()) {
+          runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+              ToastUtils.show(string);
 
-      @Override
-      public void onMessage(ByteString bytes) {
-        super.onMessage(bytes);
-      }
+            }
+          });
+          return;
+        }
+        JsonObject object = element.getAsJsonObject();
+        String code = object.get("code").getAsString();
+        if (!"0000".equals(code)) {
+          runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+              ToastUtils.show(string);
 
-      @Override
-      public void onReconnect() {
-        super.onReconnect();
-      }
-
-      @Override
-      public void onClosing(int code, String reason) {
-        super.onClosing(code, reason);
-      }
-
-      @Override
-      public void onClosed(int code, String reason) {
-        super.onClosed(code, reason);
-      }
-
-      @Override
-      public void onFailure(Throwable t, Response response) {
-        super.onFailure(t, response);
+            }
+          });
+          return;
+        }
+        qrCodeUrl = element.getAsJsonObject().get("data").getAsJsonObject().get("qrCode").getAsString();
+        runOnUiThread(new Runnable() {
+          @Override
+          public void run() {
+            ivQrCode.setImageBitmap(QrCodeUtil.createQRCodeBitmap(qrCodeUrl, 300, 300));
+          }
+        });
       }
     });
+  }
+
+  private void getCheckCode() {
+
+    String tel = etTel.getText().toString();
+    FormBody body = new FormBody.Builder()
+        .add("tel", tel)
+        .build();
+    HttpUtil.postAsync(Urls.getCheckCode, body, new Callback() {
+      @Override
+      public void onFailure(Call call, final IOException e) {
+        Log.e(TAG, "onFailure: ", e);
+        runOnUiThread(new Runnable() {
+          @Override
+          public void run() {
+            ToastUtils.show(e.getMessage());
+          }
+        });
+      }
+
+      @Override
+      public void onResponse(Call call, Response response) throws IOException {
+        final String string = response.body().string();
+        JsonElement element = JsonParser.parseString(string);
+        if (!element.isJsonObject()) {
+          runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+              ToastUtils.show(string);
+
+            }
+          });
+          return;
+        }
+        final JsonObject object = element.getAsJsonObject();
+        String code = object.get("code").getAsString();
+        if (!"0000".equals(code)) {
+          runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+              ToastUtils.show(string);
+
+            }
+          });
+          return;
+        }
+        runOnUiThread(new Runnable() {
+          @Override
+          public void run() {
+            ToastUtils.show(object.get("msg").getAsString());
+//            clickCountdown(5 * 60 * 1000);
+            pageCountDownTimer();
+
+          }
+        });
+      }
+    });
+  }
+
+  @Override
+  protected void onTickCallback(long millisUntilFinished) {
+
+//    tvCodeTitle.setEnabled(false);
+//    String value = String.valueOf((int) millisUntilFinished / 1000);
+//    tvCodeTitle.setText("获取验证码(" + value + ")");
+//    pageCountDown = millisUntilFinished;
+//
+//    Log.e(TAG, "onTickCallback: " + this.toString());
+//    Log.e(TAG, "onTickCallback: " + millisUntilFinished);
+  }
+
+  @Override
+  protected void onFinishCallback() {
+//    pageCountDown = 0;
+//    tvCodeTitle.setText("获取验证码");
+//    tvCodeTitle.setEnabled(true);
+  }
+
+
+  private void loadBaseCountDownTimer() {
+    long countTime = App.baseCountTime;
+    if (countTime == 0) {
+      tvCodeTitle.setText("获取验证码");
+      tvCodeTitle.setEnabled(true);
+      return;
+    }
+    tvCodeTitle.setEnabled(false);
+    pageCountDownTimer = new CountDownTimer(App.baseCountTime, 1000) {
+
+      @Override
+      public void onTick(long millisUntilFinished) {
+        String value = String.valueOf((int) millisUntilFinished / 1000);
+        tvCodeTitle.setText("获取验证码(" + value + ")");
+        pageCountDown = millisUntilFinished;
+      }
+
+      @Override
+      public void onFinish() {
+        pageCountDown = 0;
+        tvCodeTitle.setText("获取验证码");
+        tvCodeTitle.setEnabled(true);
+      }
+    }.start();
+  }
+
+  private void pageCountDownTimer() {
+    pageCountDownTimer = null;
+    tvCodeTitle.setEnabled(false);
+    pageCountDownTimer = new CountDownTimer(5 * 60 * 1000, 1000) {
+
+      @Override
+      public void onTick(long millisUntilFinished) {
+        String value = String.valueOf((int) millisUntilFinished / 1000);
+        tvCodeTitle.setText("获取验证码(" + value + ")");
+        pageCountDown = millisUntilFinished;
+      }
+
+      @Override
+      public void onFinish() {
+        pageCountDown = 0;
+        tvCodeTitle.setText("获取验证码");
+        tvCodeTitle.setEnabled(true);
+      }
+    }.start();
+  }
+
+
+  @Override
+  protected void onPause() {
+    super.onPause();
+    if (pageCountDownTimer != null) {
+
+      pageCountDownTimer.cancel();
+    }
+    startCountDownTimer(pageCountDown);
   }
 }

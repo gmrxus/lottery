@@ -52,6 +52,19 @@
             android:textColor="@color/white"
             android:textSize="20sp" />
 
+        <TextView
+            android:id="@+id/tv_account"
+            android:layout_width="wrap_content"
+            android:layout_height="34dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_toStartOf="@id/btn_top_right"
+            android:layout_toLeftOf="@id/btn_top_right"
+            android:text=""
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:visibility="gone" />
+
         <com.zzrh.lottery.ui.FocusButton
             android:id="@+id/btn_top_right"
             android:layout_width="114dp"
@@ -293,7 +306,7 @@
                     android:layout_height="wrap_content"
                     android:layout_toEndOf="@id/iv_3"
                     android:layout_toRightOf="@id/iv_3"
-                    android:text="选号助手"
+                    android:text="VR选号"
                     android:textColor="@color/white"
                     android:textSize="@dimen/ts_text_btn" />
             </com.zzrh.lottery.ui.FocusRelativeLayout>

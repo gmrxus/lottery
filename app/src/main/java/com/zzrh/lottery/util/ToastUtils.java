@@ -40,6 +40,11 @@ public class ToastUtils {
   public static void show(int resId) {
     showToast(context, context.getString(resId), Toast.LENGTH_SHORT);
   }
+  public static void show(String content) {
+    showToast(context, content, Toast.LENGTH_SHORT);
+  }
+
+
 
   private static void showToast(Context context, String massage, int duration) {
     // 设置显示文字的颜色

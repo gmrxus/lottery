@@ -3,19 +3,22 @@ package com.zzrh.lottery.page;
 import android.os.Bundle;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 
 import androidx.core.content.ContextCompat;
 
-import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.zzrh.lottery.R;
-import com.zzrh.lottery.base.BaseActivity;
+import com.zzrh.lottery.BaseActivity;
+import com.zzrh.lottery.common.SPKey;
 import com.zzrh.lottery.ui.FocusButton;
 import com.zzrh.lottery.ui.FocusImageView;
+import com.zzrh.lottery.util.SPUtil;
+import com.zzrh.lottery.util.ToastUtils;
 import com.zzrh.lottery.util.http.HttpUtil;
 import com.zzrh.lottery.util.http.Urls;
 
@@ -72,22 +75,49 @@ public class LoginActivity extends BaseActivity {
             .add("tel", etTel.getText().toString())
             .add("password", etPassword.getText().toString())
             .build();
-        HttpUtil.postAsync(Urls.BASE_URL, body, new Callback() {
+        HttpUtil.postAsync(Urls.LOGIN, body, new Callback() {
           @Override
           public void onFailure(Call call, IOException e) {
             //登录失败
+            Log.e(TAG, "onFailure: ", e);
           }
 
           @Override
-          public void onResponse(Call call, Response response) throws IOException {
-            Gson gson = new Gson();
-            JsonObject object = JsonParser.parseString(response.body().string()).getAsJsonObject();
-            String code = object.get("code").getAsString();
-            if ("0000".equals(code)) {
-              //登录成功
-            } else {
-              //登录失败
+          public void onResponse(Call call, final Response response) throws IOException {
+            final String string = response.body().string();
+            JsonElement element = JsonParser.parseString(string);
+            if (!element.isJsonObject()) {
+              runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                  ToastUtils.show(string);
+
+                }
+              });
+              return;
             }
+            JsonObject object = element.getAsJsonObject();
+            String code = object.get("code").getAsString();
+            if (!"0000".equals(code)) {
+              runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                  ToastUtils.show(string);
+
+                }
+              });
+              return;
+            }
+            JsonObject data = element.getAsJsonObject().get("data").getAsJsonObject();
+            String pcToken = data.get("pcToken").getAsString();
+            String account = data
+                .get("user").getAsJsonObject()
+                .get("account").getAsString();
+            String userId = data.get("user").getAsJsonObject().get("id").getAsString();
+            SPUtil.put(LoginActivity.this, SPKey.token, pcToken);
+            SPUtil.put(LoginActivity.this, SPKey.account, account);
+            SPUtil.put(LoginActivity.this, SPKey.userId, userId);
+            finish();
           }
         });
       }
@@ -101,10 +131,10 @@ public class LoginActivity extends BaseActivity {
                 ? R.drawable.ic_eye_on_orange
                 : R.drawable.ic_eye_off_orange));
         ivEye.invalidate();
-        if(isVisibility){
+        if (isVisibility) {
           //如果选中，显示密码
           etPassword.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
-        }else{
+        } else {
           //否则隐藏密码
           etPassword.setTransformationMethod(PasswordTransformationMethod.getInstance());
         }

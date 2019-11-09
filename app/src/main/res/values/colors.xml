@@ -19,5 +19,8 @@
     <color name="gray">#333333</color>
     <color name="btnOffEnableStartColor">#C7C5C5</color>
     <color name="btnOffEnableEndColor">#999999</color>
-<color name="bgImgGrayAlpha">#33000000</color>
+    <color name="bgImgGrayAlpha">#33000000</color>
+    <color name="green">#87DF11</color>
+    <color name="unClickColor">#eeeeee</color>
+    <color name="red">#DA3356</color>
 </resources>

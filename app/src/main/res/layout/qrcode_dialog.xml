@@ -19,8 +19,7 @@
             android:id="@+id/iv_qrcode"
             android:layout_width="301dp"
             android:layout_height="301dp"
-            android:layout_centerHorizontal="true"
-            android:src="@drawable/qrcode" />
+            android:layout_centerHorizontal="true" />
 
         <RelativeLayout
             android:layout_width="match_parent"

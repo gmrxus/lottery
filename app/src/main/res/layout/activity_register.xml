@@ -59,8 +59,7 @@
                 android:id="@+id/iv_qrcode"
                 android:layout_width="182dp"
                 android:layout_height="182dp"
-                android:layout_marginBottom="16dp"
-                android:src="@mipmap/ic_launcher" />
+                android:layout_marginBottom="16dp" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -100,11 +99,25 @@
                 android:layout_toRightOf="@id/tv_tel_title"
                 android:background="@color/gray_a"
                 android:hint="请输入手机号码（用于账户登录）"
+                android:maxLength="11"
                 android:paddingStart="42dp"
                 android:paddingLeft="42dp"
                 android:textColor="@color/white_a"
                 android:textColorHint="@color/white_a"
                 android:textSize="25sp" />
+
+            <TextView
+                android:layout_width="20dp"
+                android:layout_height="52dp"
+                android:layout_alignStart="@id/et_tel"
+                android:layout_alignLeft="@id/et_tel"
+                android:layout_alignTop="@id/et_tel"
+                android:layout_alignBottom="@id/et_tel"
+                android:gravity="center"
+                android:text="*"
+                android:textColor="@color/red"
+                android:textSize="24sp" />
+
 
             <TextView
                 android:id="@+id/tv_password_title"
@@ -119,23 +132,46 @@
                 android:text="@string/password"
                 android:textColor="@color/white"
                 android:textSize="25sp" />
-
+            <TextView
+                android:layout_width="20dp"
+                android:layout_height="52dp"
+                android:layout_alignStart="@id/et_password"
+                android:layout_alignLeft="@id/et_password"
+                android:layout_alignTop="@id/et_password"
+                android:layout_alignBottom="@id/et_password"
+                android:gravity="center"
+                android:text="*"
+                android:textColor="@color/red"
+                android:textSize="24sp" />
             <EditText
                 android:id="@+id/et_password"
                 android:layout_width="match_parent"
                 android:layout_height="52dp"
                 android:layout_alignTop="@id/tv_password_title"
+                android:layout_toStartOf="@id/cb_eye_password"
+                android:layout_toLeftOf="@id/cb_eye_password"
                 android:layout_toEndOf="@id/tv_tel_title"
                 android:layout_toRightOf="@id/tv_tel_title"
                 android:background="@color/gray_a"
                 android:hint="请设置登录密码（6-16个字符）"
+                android:inputType="textPassword"
+                android:maxLength="16"
                 android:paddingStart="42dp"
                 android:paddingLeft="42dp"
-                android:minLines="6"
-                android:maxLength="16"
                 android:textColor="@color/white_a"
                 android:textColorHint="@color/white_a"
                 android:textSize="25sp" />
+
+            <com.zzrh.lottery.ui.EyeCheckBox
+                android:id="@+id/cb_eye_password"
+                android:layout_width="53dp"
+                android:layout_height="53dp"
+                android:layout_alignTop="@id/et_password"
+                android:layout_alignBottom="@id/et_password"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginLeft="8dp"
+                android:src="@drawable/select_bg_eye_off" />
 
             <TextView
                 android:id="@+id/tv_password_q_title"
@@ -151,22 +187,46 @@
                 android:textColor="@color/white"
                 android:textSize="25sp" />
 
+            <TextView
+                android:layout_width="20dp"
+                android:layout_height="52dp"
+                android:layout_alignStart="@id/et_password_q"
+                android:layout_alignLeft="@id/et_password_q"
+                android:layout_alignTop="@id/et_password_q"
+                android:layout_alignBottom="@id/et_password_q"
+                android:gravity="center"
+                android:text="*"
+                android:textColor="@color/red"
+                android:textSize="24sp" />
             <EditText
                 android:id="@+id/et_password_q"
                 android:layout_width="match_parent"
                 android:layout_height="52dp"
                 android:layout_alignTop="@id/tv_password_q_title"
+                android:layout_toStartOf="@id/cb_eye_password_q"
+                android:layout_toLeftOf="@id/cb_eye_password_q"
                 android:layout_toEndOf="@id/tv_tel_title"
                 android:layout_toRightOf="@id/tv_tel_title"
                 android:background="@color/gray_a"
                 android:hint="请确认登录密码（6-16个字符）"
-                android:minLines="6"
+                android:inputType="textPassword"
                 android:maxLength="16"
                 android:paddingStart="42dp"
                 android:paddingLeft="42dp"
                 android:textColor="@color/white_a"
                 android:textColorHint="@color/white_a"
                 android:textSize="25sp" />
+
+            <com.zzrh.lottery.ui.EyeCheckBox
+                android:id="@+id/cb_eye_password_q"
+                android:layout_width="53dp"
+                android:layout_height="53dp"
+                android:layout_alignTop="@id/et_password_q"
+                android:layout_alignBottom="@id/et_password_q"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginLeft="8dp"
+                android:src="@drawable/select_bg_eye_off" />
 
             <TextView
                 android:id="@+id/tv_name_title"
@@ -181,6 +241,17 @@
                 android:text="真实姓名"
                 android:textColor="@color/white"
                 android:textSize="25sp" />
+            <TextView
+                android:layout_width="20dp"
+                android:layout_height="52dp"
+                android:layout_alignStart="@id/et_name"
+                android:layout_alignLeft="@id/et_name"
+                android:layout_alignTop="@id/et_name"
+                android:layout_alignBottom="@id/et_name"
+                android:gravity="center"
+                android:text="*"
+                android:textColor="@color/red"
+                android:textSize="24sp" />
 
             <EditText
                 android:id="@+id/et_name"
@@ -191,6 +262,7 @@
                 android:layout_toRightOf="@id/tv_tel_title"
                 android:background="@color/gray_a"
                 android:hint="领取大奖的凭证，不可更改"
+                android:maxLength="8"
                 android:paddingStart="42dp"
                 android:paddingLeft="42dp"
                 android:textColor="@color/white_a"
@@ -210,7 +282,17 @@
                 android:text="身份证号码"
                 android:textColor="@color/white"
                 android:textSize="25sp" />
-
+            <TextView
+                android:layout_width="20dp"
+                android:layout_height="52dp"
+                android:layout_alignStart="@id/et_cardid"
+                android:layout_alignLeft="@id/et_cardid"
+                android:layout_alignTop="@id/et_cardid"
+                android:layout_alignBottom="@id/et_cardid"
+                android:gravity="center"
+                android:text="*"
+                android:textColor="@color/red"
+                android:textSize="24sp" />
             <EditText
                 android:id="@+id/et_cardid"
                 android:layout_width="match_parent"
@@ -220,8 +302,10 @@
                 android:layout_toRightOf="@id/tv_tel_title"
                 android:background="@color/gray_a"
                 android:hint="未满18岁不可购买彩票"
+                android:maxLength="18"
+                android:maxLines="18"
+                android:minLines="18"
                 android:paddingStart="42dp"
-                android:maxLength="20"
                 android:paddingLeft="42dp"
                 android:textColor="@color/white_a"
                 android:textColorHint="@color/white_a"
@@ -235,13 +319,23 @@
                 android:layout_marginTop="25dp"
                 android:layout_marginEnd="24dp"
                 android:layout_marginRight="24dp"
-                android:background="@drawable/bg_titile_green"
+                android:background="@drawable/selector_bg_check_code"
                 android:focusable="true"
                 android:gravity="center"
                 android:text="获取验证码"
                 android:textColor="@color/white"
                 android:textSize="25sp" />
-
+            <TextView
+                android:layout_width="20dp"
+                android:layout_height="52dp"
+                android:layout_alignStart="@id/et_code"
+                android:layout_alignLeft="@id/et_code"
+                android:layout_alignTop="@id/et_code"
+                android:layout_alignBottom="@id/et_code"
+                android:gravity="center"
+                android:text="*"
+                android:textColor="@color/red"
+                android:textSize="24sp" />
             <EditText
                 android:id="@+id/et_code"
                 android:layout_width="match_parent"
@@ -251,6 +345,7 @@
                 android:layout_toRightOf="@id/tv_code_title"
                 android:background="@color/gray_a"
                 android:hint="请输入短信验证码"
+                android:maxLines="6"
                 android:paddingStart="42dp"
                 android:paddingLeft="42dp"
                 android:textColor="@color/white_a"
